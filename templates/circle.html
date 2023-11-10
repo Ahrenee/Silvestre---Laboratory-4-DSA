@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Profile</title>
+</head>
+
+<body>
+    <nav>
+        <div class="menu">
+            <div class="logo">
+                <a href="#">Silvestre</a>
+            </div>
+            <ul>
+                <li><a href="/works">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="bg"></div>
+    <div class="project-style">
+        <h1>Solve for <strong>Area of Circle</strong></h1>
+        <form action="/circle" method="post">
+            <label for="inputInteger">Enter an integer:</label>
+            <input type="number" id="inputInteger" name="inputInteger" required>
+            <input type="submit" value="Find area">
+        </form>
+
+        {% if invalid is true %}
+        <p>Invalid input. Please enter a valid radius.</p>
+        {% endif %}
+
+        {% if result is not none %}
+        <p>Area of the circle with radius {{ request.form.inputInteger }} is {{ result }}</p>
+        {% endif %}
+    </div>
+</body>
+
+</html>

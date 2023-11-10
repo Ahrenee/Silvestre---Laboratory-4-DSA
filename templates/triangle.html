@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Profile</title>
+</head>
+
+<body>
+    <nav>
+        <div class="menu">
+            <div class="logo">
+                <a href="#">Silvestre</a>
+            </div>
+            <ul>
+                <li><a href="/works">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="bg"></div>
+    <div class="project-style">
+        <h1>Solve for Area of Triangle</h1>
+
+        <form action="/triangle" method="post">
+            <label for="inputBase">Base:</label>
+            <input type="number" id="inputBase" name="inputBase" required>
+            <label for="inputHeight">Height:</label>
+            <input type="number" id="inputHeight" name="inputHeight" required>
+            <input type="submit" value="Find area">
+        </form>
+
+        {% if invalid is true %}
+        <p>Invalid input. Please enter a valid base and height.</p>
+        {% endif %}
+
+        {% if result is not none %}
+        <p>Area of the triangle with base {{ request.form.inputBase }} and height {{ request.form.inputHeight }} is {{
+            result }}
+        </p>
+        {% endif %}
+    </div>
+</body>
+
+</html>
